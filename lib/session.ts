@@ -14,6 +14,8 @@ export const DEFAULT_SETTINGS: QuizSettings = {
 export type Answers = Record<string, string | undefined>;
 export type Progress = { index: number; answers: Answers; elapsedMs: number };
 export type Session = {
+  runId: string;
+  quizId?: string;
   subject: string;
   source: Question[];
   settings: QuizSettings;

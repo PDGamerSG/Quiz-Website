@@ -8,8 +8,11 @@ import type { Answers } from "./QuizScreen";
 import { scoreQuiz } from "@/lib/session";
 import { downloadJson } from "@/lib/download";
 import { Backdrop, Badge, Button, Card } from "./ui";
+import type { SaveAttemptInput } from "@/lib/cloud-types";
+import { ResultStorage } from "./ResultStorage";
 
 type Props = {
+  cloudAttempt?: SaveAttemptInput;
   subject: string;
   questions: Question[];
   answers: Answers;
@@ -37,6 +40,7 @@ function verdict(percent: number) {
 }
 
 export function ResultsScreen({
+  cloudAttempt,
   subject,
   questions,
   answers,
@@ -114,6 +118,7 @@ export function ResultsScreen({
             finished in {formatDuration(elapsedMs)}
           </p>
         </header>
+        {cloudAttempt && <ResultStorage key={cloudAttempt.id} attempt={cloudAttempt} />}
 
         <div className="mt-10 grid grid-cols-3 gap-2 anim-fade-up d-2">
           {[

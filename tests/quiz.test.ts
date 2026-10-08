@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { JSDOM } from "jsdom";
-import { MAX_IMPORT_BYTES, MAX_QUESTIONS, parseQuiz, serializeQuiz, type ParseResult } from "../lib/quiz";
+import { MAX_IMPORT_BYTES, MAX_QUESTIONS, parseQuiz, sameQuestions, serializeQuiz, type ParseResult } from "../lib/quiz";
 import { SAMPLE_HTML, SAMPLE_JSON } from "../lib/sample";
 import { GUIDE_HTML, GUIDE_JSON } from "../components/QuizFormatGuide";
 import { buildRun, DEFAULT_SETTINGS, scoreQuiz } from "../lib/session";
@@ -170,4 +170,28 @@ test("blocked browser storage fails gracefully", () => {
     assert.deepEqual(readLibrary(), []);
     assert.equal(readStage().name, "setup");
   } finally { Object.defineProperty(globalThis, "localStorage", { value: previous, configurable: true }); }
+});
+
+test("cloud quiz comparison ignores JSONB key order but detects explanation and answer edits", () => {
+  const questions = success(parseQuiz(SAMPLE_JSON)).questions;
+  const reordered = JSON.parse(JSON.stringify(questions, Object.keys(questions[0]).reverse().concat(["key", "text"])));
+  assert.ok(sameQuestions(questions, reordered));
+  assert.equal(sameQuestions(questions, questions.map((question, index) => index ? question : { ...question, explanation: "Edited explanation" })), false);
+  assert.equal(sameQuestions(questions, [...questions].reverse()), false);
+  assert.equal(sameQuestions(questions, questions.map((question) => ({ ...question, correctKey: "changed" }))), false);
+});
+
+test("restored sessions keep cloud quiz and attempt identities stable across reloads", () => {
+  const questions = success(parseQuiz(SAMPLE_JSON)).questions;
+  const runId = crypto.randomUUID();
+  const quizId = crypto.randomUUID();
+  writeStored(SESSION_KEY, { name: "results", session: { runId, quizId, subject: "Cloud quiz", source: questions, run: questions, settings: DEFAULT_SETTINGS, attempt: 0 }, answers: {}, elapsedMs: 1000 });
+  const restored = readStage();
+  assert.equal(restored.name, "results");
+  if (restored.name !== "results") return;
+  assert.equal(restored.session.runId, runId);
+  assert.equal(restored.session.quizId, quizId);
+  writeStored(DRAFT_KEY, { subject: "Cloud quiz", raw: SAMPLE_JSON, cloudId: quizId, cloudRevision: 7 });
+  assert.equal(readDraft().cloudId, quizId);
+  assert.equal(readDraft().cloudRevision, 7);
 });

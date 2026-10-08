@@ -209,3 +209,13 @@ export function parseQuiz(raw: string, format?: ImportFormat): ParseResult {
 export function serializeQuiz(title: string, questions: Question[]): string {
   return JSON.stringify({ title, questions }, null, 2);
 }
+
+// PostgreSQL JSONB can reorder object keys. Compare the actual question data,
+// including option order and explanations, before reusing a same-name quiz.
+export function sameQuestions(left: Question[], right: Question[]): boolean {
+  const signature = (questions: Question[]) => JSON.stringify(questions.map((question) => [
+    question.id, question.prompt, question.options.map((option) => [option.key, option.text]),
+    question.correctKey, question.explanation ?? null, question.topic ?? null, question.source ?? null,
+  ]));
+  return signature(left) === signature(right);
+}

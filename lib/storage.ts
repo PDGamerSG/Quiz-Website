@@ -4,7 +4,7 @@ import { DEFAULT_SETTINGS, type QuizSettings, type Stage } from "./session";
 export const DRAFT_KEY = "quizly:draft";
 export const LIBRARY_KEY = "quizly:library:v1";
 export const SESSION_KEY = "quizly:session:v1";
-export type Draft = { subject: string; raw: string; format: ImportFormat; settings: QuizSettings };
+export type Draft = { subject: string; raw: string; format: ImportFormat; settings: QuizSettings; cloudId?: string; cloudRevision?: number };
 export type SavedQuiz = { id: string; title: string; questions: Question[]; updatedAt: string };
 
 export function readStored(key: string): unknown {
@@ -40,6 +40,8 @@ export function readDraft(): Draft {
     raw: typeof data?.raw === "string" ? data.raw : typeof data?.json === "string" ? data.json : "",
     format: data?.format === "html" ? "html" : "json",
     settings: readSettings(data?.settings),
+    cloudId: typeof data?.cloudId === "string" ? data.cloudId : undefined,
+    cloudRevision: typeof data?.cloudRevision === "number" && Number.isInteger(data.cloudRevision) && data.cloudRevision > 0 ? data.cloudRevision : undefined,
   };
 }
 
@@ -71,6 +73,8 @@ export function readStage(): Stage {
   const elapsedMs = typeof progress?.elapsedMs === "number" && Number.isFinite(progress.elapsedMs) ? Math.max(0, progress.elapsedMs) : 0;
   const index = typeof progress?.index === "number" && Number.isInteger(progress.index) ? Math.max(0, Math.min(run.questions.length - 1, progress.index)) : 0;
   const restored = {
+    runId: typeof session.runId === "string" && /^[0-9a-f-]{36}$/i.test(session.runId) ? session.runId : crypto.randomUUID(),
+    quizId: typeof session.quizId === "string" && /^[0-9a-f-]{36}$/i.test(session.quizId) ? session.quizId : undefined,
     subject: session.subject, source: source.questions, run: run.questions,
     settings: readSettings(session.settings),
     attempt: typeof session.attempt === "number" ? session.attempt : 0,

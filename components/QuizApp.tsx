@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { CloudAttempt } from "@/lib/cloud-types";
 import type { Question } from "@/lib/quiz";
 import { buildRun, type Answers, type Progress, type QuizSettings, type Session, type Stage } from "@/lib/session";
 import { readStage, SESSION_KEY, writeStored } from "@/lib/storage";
@@ -22,8 +23,8 @@ function LoadedQuizApp() {
     return () => clearTimeout(timer);
   }, [stage]);
 
-  const start = useCallback(({ subject, questions, settings }: { subject: string; questions: Question[]; settings: QuizSettings }) => {
-    setStage({ name: "quiz", session: { subject, source: questions, settings, run: buildRun(questions, settings), attempt: 0 } });
+  const start = useCallback(({ subject, questions, settings, quizId }: { subject: string; questions: Question[]; settings: QuizSettings; quizId?: string }) => {
+    setStage({ name: "quiz", session: { runId: crypto.randomUUID(), quizId, subject, source: questions, settings, run: buildRun(questions, settings), attempt: 0 } });
     window.scrollTo({ top: 0 });
   }, []);
 
@@ -45,7 +46,7 @@ function LoadedQuizApp() {
 
   const retry = useCallback((session: Session, questions?: Question[]) => {
     const source = questions ?? session.source;
-    setStage({ name: "quiz", session: { ...session, source, run: buildRun(source, session.settings), attempt: session.attempt + 1, progress: undefined } });
+    setStage({ name: "quiz", session: { ...session, runId: crypto.randomUUID(), source, run: buildRun(source, session.settings), attempt: session.attempt + 1, progress: undefined } });
     window.scrollTo({ top: 0 });
   }, []);
 
@@ -54,11 +55,21 @@ function LoadedQuizApp() {
     window.scrollTo({ top: 0 });
   }
 
-  if (stage.name === "setup") return <SetupScreen onStart={start} />;
+  function review(attempt: CloudAttempt) {
+    setStage({ name: "results", session: { runId: attempt.id, quizId: attempt.quizId ?? undefined, subject: attempt.subject, source: attempt.questions, run: attempt.questions, settings: attempt.settings, attempt: 0 }, answers: attempt.answers, elapsedMs: attempt.elapsedMs });
+    window.scrollTo({ top: 0 });
+  }
+
+  const cloudAttempt = useMemo(() => stage.name === "results" ? {
+    id: stage.session.runId, quizId: stage.session.quizId, subject: stage.session.subject,
+    questions: stage.session.run, answers: stage.answers, elapsedMs: Math.round(stage.elapsedMs), settings: stage.session.settings,
+  } : undefined, [stage]);
+
+  if (stage.name === "setup") return <SetupScreen onStart={start} onReview={review} />;
   if (stage.name === "results") return <ResultsScreen subject={stage.session.subject} questions={stage.session.run}
     answers={stage.answers} elapsedMs={stage.elapsedMs} onRetry={() => retry(stage.session)}
     onRetryMissed={() => retry(stage.session, stage.session.run.filter((question) => stage.answers[question.id] !== question.correctKey))}
-    onNewQuiz={newQuiz} />;
+    onNewQuiz={newQuiz} cloudAttempt={cloudAttempt} />;
 
   return <>
     <QuizScreen key={stage.session.attempt} subject={stage.session.subject} questions={stage.session.run}

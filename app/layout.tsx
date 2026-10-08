@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "quizly — HTML & JSON quizzes",
   description:
-    "Import HTML or JSON quizzes, save your question library, practise by topic, and review every answer. Private, browser-based learning.",
+    "Import HTML or JSON quizzes, explore a shared quiz library, practise by topic, and learn from detailed explanations with private result history.",
 };
 
 export const viewport: Viewport = {

@@ -28,3 +28,27 @@ Verified in the T3 Code collaborative Chromium browser against the local Next.js
 | Setup and quiz responsiveness | No horizontal overflow at 320, 768, 1024 and 1440 CSS pixels |
 
 Automated parser/scoring/storage tests are in `quiz.test.ts`; run `npm test`.
+
+## Neon integration verification
+
+Verified against the configured Neon database, with the shared library enabled.
+
+| Flow | Result |
+| --- | --- |
+| Publish the existing device library | The software-testing quiz's 140 questions and explanations saved in Neon; the successful device copy was removed |
+| Shared access | A visitor without the original cookie can list and open the same quiz |
+| Edit and save an explanation | Edited text persists in Neon, after reload, in quiz feedback and in result review |
+| Save an existing name | Existing content is preserved; different imported content does not overwrite it |
+| Start an unchanged quiz | Revision stays stable, preserving other visitors' editing sessions |
+| Stale edits/deletions | API returns 409 and keeps current saved content |
+| Complete and reload results | Scores, answers and snapshots save in Neon; reload leaves one result record |
+| Result history | Homepage opens the saved result with the original explanation and score |
+| Private attempts | A different browser cookie cannot list or open the first browser's results |
+| Interrupted result save | Simulated HTTP 503 leaves a local pending result and exposes retry controls |
+| Retry from homepage | The pending result saves once, appears in history, and clears from the local queue |
+| Delete shared quiz | Confirmation names the shared library; completed result snapshots remain available |
+| Request validation | Invalid answers, missing revisions, malformed JSON, oversized bodies, unsupported content types and cross-origin writes are rejected |
+| Server scoring | Supplied score values are ignored and recomputed from answers |
+| Responsive cloud library/history | No horizontal overflow at 320, 768, 1024 and 1440 CSS pixels |
+
+`npm run test:integration` performs the live API checks and cleans up its uniquely named test records. The production build also passes with a placeholder database environment value, so building does not need a live database connection.
