@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>My first quiz</title></head>
+<body>
+  <h1>My first quiz</h1>
+  <!-- data-answer matches data-index; both start at zero. -->
+  <article class="question" id="q1" data-answer="0" data-topic="Testing basics">
+    <fieldset>
+      <legend>Which activity checks software against expected results?</legend>
+      <label class="option correct" data-index="0"><span class="letter">A</span><span class="option-text">Software testing</span></label>
+      <label class="option" data-index="1"><span class="letter">B</span><span class="option-text">File compression</span></label>
+      <label class="option" data-index="2"><span class="letter">C</span><span class="option-text">Screen brightness adjustment</span></label>
+      <label class="option" data-index="3"><span class="letter">D</span><span class="option-text">Folder renaming</span></label>
+    </fieldset>
+    <div class="answer"><p>Testing compares observed behavior with expected behavior to find defects.</p></div>
+  </article>
+  <article class="question" id="q2" data-answer="2" data-topic="Coverage">
+    <fieldset>
+      <legend>Tests execute 45 out of 60 statements. What is the statement coverage?</legend>
+      <label class="option" data-index="0"><span class="letter">A</span><span class="option-text">60%</span></label>
+      <label class="option" data-index="1"><span class="letter">B</span><span class="option-text">80%</span></label>
+      <label class="option correct" data-index="2"><span class="letter">C</span><span class="option-text">75%</span></label>
+      <label class="option" data-index="3"><span class="letter">D</span><span class="option-text">100%</span></label>
+    </fieldset>
+    <div class="answer"><p>45 / 60 × 100 = 75%.</p></div>
+  </article>
+</body>
+</html>

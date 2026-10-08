@@ -1,0 +1,26 @@
+{
+  "title": "My first quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which activity checks software against expected results?",
+      "options": {
+        "A": "Software testing",
+        "B": "File compression",
+        "C": "Screen brightness adjustment",
+        "D": "Folder renaming"
+      },
+      "correctAnswer": "A",
+      "explanation": "Testing compares observed behavior with expected behavior to find defects.",
+      "topic": "Testing basics"
+    },
+    {
+      "id": "q2",
+      "question": "Tests execute 45 out of 60 statements. What is the statement coverage?",
+      "options": ["60%", "80%", "75%", "100%"],
+      "correctIndex": 2,
+      "explanation": "45 / 60 × 100 = 75%. Indices start at zero, so 2 selects the third option.",
+      "topic": "Coverage"
+    }
+  ]
+}

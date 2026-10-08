@@ -1,0 +1,3645 @@
+{
+  "title": "Software Testing",
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "Tests execute 45 of 60 executable statements. What is statement coverage?",
+      "options": [
+        {
+          "key": "A",
+          "text": "60%"
+        },
+        {
+          "key": "B",
+          "text": "80%"
+        },
+        {
+          "key": "C",
+          "text": "75%"
+        },
+        {
+          "key": "D",
+          "text": "100%"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Coverage is 45 / 60 x 100 = 75%.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q2",
+      "prompt": "A module has one if statement with no else. One test takes the true branch and executes every statement. What may still be missing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Execution of the if body"
+        },
+        {
+          "key": "B",
+          "text": "The true decision outcome"
+        },
+        {
+          "key": "C",
+          "text": "Execution of every statement after the if"
+        },
+        {
+          "key": "D",
+          "text": "The false decision outcome"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Executing every statement does not require taking the false branch of an if without an else.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q3",
+      "prompt": "For D = A AND B, tests use (T,T) and (F,T). Which target is met while B has not taken both values?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Decision coverage"
+        },
+        {
+          "key": "B",
+          "text": "Condition coverage"
+        },
+        {
+          "key": "C",
+          "text": "Multiple-condition coverage"
+        },
+        {
+          "key": "D",
+          "text": "All-path coverage for every program containing D"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "D is true once and false once, but B is always true. For runtime condition coverage, evaluation must also be observed.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q4",
+      "prompt": "What does condition coverage require for a compound decision?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the whole decision is true once"
+        },
+        {
+          "key": "B",
+          "text": "Every input value is tested"
+        },
+        {
+          "key": "C",
+          "text": "Every loop runs its maximum count"
+        },
+        {
+          "key": "D",
+          "text": "Each atomic condition evaluates to true and false"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Condition coverage tracks the individual Boolean conditions.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q5",
+      "prompt": "Assume both conditions are evaluated. For D = A OR B, tests use (T,F) and (F,T). What is missing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A true decision result"
+        },
+        {
+          "key": "B",
+          "text": "A false decision result"
+        },
+        {
+          "key": "C",
+          "text": "A false value for A"
+        },
+        {
+          "key": "D",
+          "text": "A true value for B"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Both conditions take both values, but D stays true. Condition coverage need not imply decision coverage.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q6",
+      "prompt": "What does condition/decision coverage combine?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Statement coverage and load testing"
+        },
+        {
+          "key": "B",
+          "text": "Both outcomes of each decision and both values of each atomic condition"
+        },
+        {
+          "key": "C",
+          "text": "All paths and all input values"
+        },
+        {
+          "key": "D",
+          "text": "Only true conditions and true decisions"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "It combines the requirements of condition coverage and decision coverage.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q7",
+      "prompt": "With three independent Boolean conditions, how many input truth combinations exist?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3"
+        },
+        {
+          "key": "B",
+          "text": "6"
+        },
+        {
+          "key": "C",
+          "text": "9"
+        },
+        {
+          "key": "D",
+          "text": "8"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "There are 2^3 = 8 combinations. Feasibility and runtime evaluation may affect executable coverage.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q8",
+      "prompt": "For D = (A AND B) OR C, what is D when A=T, B=F, C=F?",
+      "options": [
+        {
+          "key": "A",
+          "text": "True"
+        },
+        {
+          "key": "B",
+          "text": "False"
+        },
+        {
+          "key": "C",
+          "text": "It depends on the order of the tests"
+        },
+        {
+          "key": "D",
+          "text": "It cannot be evaluated"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "T AND F is F; F OR F is F.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q9",
+      "prompt": "For D = (marks >= 40 AND attendance >= 75) OR medicalLeave, which student is eligible?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Marks 39, attendance 75, medicalLeave=false"
+        },
+        {
+          "key": "B",
+          "text": "Marks 40, attendance 74, medicalLeave=false"
+        },
+        {
+          "key": "C",
+          "text": "Marks 30, attendance 60, medicalLeave=true"
+        },
+        {
+          "key": "D",
+          "text": "Marks 20, attendance 90, medicalLeave=false"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Medical leave alone makes the OR decision true under this stated rule.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q10",
+      "prompt": "Assume all three conditions are evaluated, with every combination feasible. What is the minimum number of tests for condition coverage of (A AND B) OR C?",
+      "options": [
+        {
+          "key": "A",
+          "text": "2, using TTT and FFF"
+        },
+        {
+          "key": "B",
+          "text": "Always 4"
+        },
+        {
+          "key": "C",
+          "text": "Always 8"
+        },
+        {
+          "key": "D",
+          "text": "1, using TTT"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "TTT and FFF give every condition both values. The four tests in the notes are a valid example, not a universal minimum.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q11",
+      "prompt": "In a short-circuit expression A AND B, A is false. What normally happens to B?",
+      "options": [
+        {
+          "key": "A",
+          "text": "B is not evaluated"
+        },
+        {
+          "key": "B",
+          "text": "B is evaluated as true"
+        },
+        {
+          "key": "C",
+          "text": "B is evaluated as false"
+        },
+        {
+          "key": "D",
+          "text": "The whole decision becomes true"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Short-circuit AND skips its second operand when the first is false. An assigned input value is not proof of evaluation.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q12",
+      "prompt": "In a short-circuit expression A OR B, which input forces B to be evaluated?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A=true"
+        },
+        {
+          "key": "B",
+          "text": "B=true regardless of A"
+        },
+        {
+          "key": "C",
+          "text": "B=false regardless of A"
+        },
+        {
+          "key": "D",
+          "text": "A=false"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "B is needed only when A is false.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q13",
+      "prompt": "Two independent if statements test x > 0 and x is even. Which set exercises all four feasible branch combinations?",
+      "options": [
+        {
+          "key": "A",
+          "text": "x = 2, 4, 6, 8"
+        },
+        {
+          "key": "B",
+          "text": "x = 1, 3, 5, 7"
+        },
+        {
+          "key": "C",
+          "text": "x = -2, -4, -6, -8"
+        },
+        {
+          "key": "D",
+          "text": "x = 2, 1, -2, -1"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "These represent positive/even, positive/odd, nonpositive/even and nonpositive/odd.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q14",
+      "prompt": "A tester wants to exercise selected sequences of branches from entry to exit. Which technique fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Usability testing"
+        },
+        {
+          "key": "B",
+          "text": "Path testing"
+        },
+        {
+          "key": "C",
+          "text": "Installation testing"
+        },
+        {
+          "key": "D",
+          "text": "Contract acceptance testing"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "A path is a sequence through the control-flow graph.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q15",
+      "prompt": "Why can exhaustive path coverage be impractical for a loop?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Loops have no branches"
+        },
+        {
+          "key": "B",
+          "text": "Path coverage ignores the loop body"
+        },
+        {
+          "key": "C",
+          "text": "Unbounded iterations can create infinitely many paths"
+        },
+        {
+          "key": "D",
+          "text": "Every loop has exactly two paths"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Different iteration counts generate different execution paths.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q16",
+      "prompt": "A branch report shows 100% coverage. A required feature is absent from the code. What is the best conclusion?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Coverage alone cannot prove all requirements are implemented"
+        },
+        {
+          "key": "B",
+          "text": "The missing feature must have been tested"
+        },
+        {
+          "key": "C",
+          "text": "The requirements are automatically satisfied"
+        },
+        {
+          "key": "D",
+          "text": "The software is defect-free"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Coverage measures the implementation that exists; requirements-based tests can reveal omissions.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q17",
+      "prompt": "For ordinary executable control flow, what does 100% branch coverage imply?",
+      "options": [
+        {
+          "key": "A",
+          "text": "100% statement coverage"
+        },
+        {
+          "key": "B",
+          "text": "Every atomic condition took both values"
+        },
+        {
+          "key": "C",
+          "text": "All possible paths were executed"
+        },
+        {
+          "key": "D",
+          "text": "No requirements are missing"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Every statement lies on a traversed control-flow route, but stronger coverage targets and correctness are separate issues.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q18",
+      "prompt": "A decision has four feasible outcomes. Tests execute three distinct outcomes. What is its outcome coverage?",
+      "options": [
+        {
+          "key": "A",
+          "text": "25%"
+        },
+        {
+          "key": "B",
+          "text": "75%"
+        },
+        {
+          "key": "C",
+          "text": "50%"
+        },
+        {
+          "key": "D",
+          "text": "100%"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Three of four outcomes were exercised.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q19",
+      "prompt": "For a simple if/else whose two arms each assign a different result, what is needed to execute both assignments?",
+      "options": [
+        {
+          "key": "A",
+          "text": "At least one true-result test and one false-result test"
+        },
+        {
+          "key": "B",
+          "text": "Only a true-result test"
+        },
+        {
+          "key": "C",
+          "text": "Only a false-result test"
+        },
+        {
+          "key": "D",
+          "text": "Four tests in every case"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Each assignment is reachable through a different outcome of the decision.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q20",
+      "prompt": "Which strategy best uses a code coverage report?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Add tests for meaningful uncovered logic and check requirements too"
+        },
+        {
+          "key": "B",
+          "text": "Stop all testing as soon as statements reach 100%"
+        },
+        {
+          "key": "C",
+          "text": "Ignore uncovered branches if current tests pass"
+        },
+        {
+          "key": "D",
+          "text": "Replace all functional tests with coverage numbers"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Coverage guides further testing but does not establish product correctness.",
+      "topic": "Logic coverage",
+      "source": "Study reference: PDF 5, pp. 7-33"
+    },
+    {
+      "id": "q21",
+      "prompt": "What do nodes and directed edges in a control-flow graph represent?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Input partitions and their representative values"
+        },
+        {
+          "key": "B",
+          "text": "Program points or blocks, and transfers of control"
+        },
+        {
+          "key": "C",
+          "text": "Variable names and their assigned values"
+        },
+        {
+          "key": "D",
+          "text": "Test cases and their expected results"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "A CFG models possible execution flow through the code.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q22",
+      "prompt": "A flow graph has 7 nodes. What is the size of its graph matrix?",
+      "options": [
+        {
+          "key": "A",
+          "text": "7 x 7"
+        },
+        {
+          "key": "B",
+          "text": "7 x 1"
+        },
+        {
+          "key": "C",
+          "text": "1 x 7"
+        },
+        {
+          "key": "D",
+          "text": "49 x 49"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "A graph matrix has one row and one column per node.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q23",
+      "prompt": "Using rows as source nodes and columns as destination nodes, what does M[2,5] indicate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A direct edge from node 5 to node 2"
+        },
+        {
+          "key": "B",
+          "text": "A path necessarily passing through every node"
+        },
+        {
+          "key": "C",
+          "text": "The fifth test for node 2"
+        },
+        {
+          "key": "D",
+          "text": "A direct edge from node 2 to node 5"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "The matrix convention must be stated; here the row is the source and the column is the destination.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q24",
+      "prompt": "If a directed graph has an edge from A to B, what can be inferred about B to A?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Nothing without an explicit reverse edge"
+        },
+        {
+          "key": "B",
+          "text": "The reverse edge must exist"
+        },
+        {
+          "key": "C",
+          "text": "The graph must be undirected"
+        },
+        {
+          "key": "D",
+          "text": "Both nodes are unreachable"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Directed edges do not imply reverse connections.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q25",
+      "prompt": "What does a nonzero diagonal entry in an adjacency matrix usually show?",
+      "options": [
+        {
+          "key": "A",
+          "text": "An edge to the next node"
+        },
+        {
+          "key": "B",
+          "text": "An unreachable node"
+        },
+        {
+          "key": "C",
+          "text": "A self-loop at that node"
+        },
+        {
+          "key": "D",
+          "text": "A missing matrix row"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The row and column refer to the same node.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q26",
+      "prompt": "A labeled graph has two parallel edges from node 2 to node 1. A simple binary matrix stores just one 1 there. What information is lost?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The existence of any connection"
+        },
+        {
+          "key": "B",
+          "text": "The number of nodes"
+        },
+        {
+          "key": "C",
+          "text": "The direction of the connection"
+        },
+        {
+          "key": "D",
+          "text": "The fact that there are two distinct edges"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Binary adjacency shows existence, not multiplicity. Count distinct edges when computing complexity.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q27",
+      "prompt": "A single connected, single-entry/single-exit CFG has E=10 and N=8. What is its cyclomatic complexity?",
+      "options": [
+        {
+          "key": "A",
+          "text": "2"
+        },
+        {
+          "key": "B",
+          "text": "10"
+        },
+        {
+          "key": "C",
+          "text": "18"
+        },
+        {
+          "key": "D",
+          "text": "4"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "V = E - N + 2 = 10 - 8 + 2 = 4.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q28",
+      "prompt": "Two separate single-entry/single-exit CFGs have total E=9 and N=9. Using V = E - N + 2P, what is total V for P=2?",
+      "options": [
+        {
+          "key": "A",
+          "text": "2"
+        },
+        {
+          "key": "B",
+          "text": "4"
+        },
+        {
+          "key": "C",
+          "text": "0"
+        },
+        {
+          "key": "D",
+          "text": "9"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "V = 9 - 9 + 2(2) = 4. Do not treat two separate graphs as one connected graph.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q29",
+      "prompt": "A connected structured routine has three binary decision nodes. What is its cyclomatic complexity?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3"
+        },
+        {
+          "key": "B",
+          "text": "6"
+        },
+        {
+          "key": "C",
+          "text": "4"
+        },
+        {
+          "key": "D",
+          "text": "8"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "For this stated graph, V equals the number of binary decision nodes plus one.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q30",
+      "prompt": "Which statement best describes cyclomatic complexity?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The count of all possible input values"
+        },
+        {
+          "key": "B",
+          "text": "The number of defects in the program"
+        },
+        {
+          "key": "C",
+          "text": "The size of a basis set of independent control-flow paths"
+        },
+        {
+          "key": "D",
+          "text": "The number of seconds required for a test"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "It measures structural complexity and guides basis-path testing; it does not count faults.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q31",
+      "prompt": "A factorial routine initializes product=1 and repeats for index=1 through number. What should be returned for number=0?",
+      "options": [
+        {
+          "key": "A",
+          "text": "0"
+        },
+        {
+          "key": "B",
+          "text": "1"
+        },
+        {
+          "key": "C",
+          "text": "-1"
+        },
+        {
+          "key": "D",
+          "text": "An infinite loop"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The body is skipped and product remains 1, matching 0! = 1.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q32",
+      "prompt": "A graph contains an edge that no allowed input can execute. How should the test team handle it?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Investigate infeasibility and document it"
+        },
+        {
+          "key": "B",
+          "text": "Invent a passing result for the edge"
+        },
+        {
+          "key": "C",
+          "text": "Assume every syntactic path is feasible"
+        },
+        {
+          "key": "D",
+          "text": "Claim the edge was executed by another test"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Some graph paths are infeasible because of constraints in the program or input domain.",
+      "topic": "Graphs and basis paths",
+      "source": "Study reference: PDF 5, pp. 1-6, 34-43"
+    },
+    {
+      "id": "q33",
+      "prompt": "A team deliberately changes comparison operators and reruns tests to evaluate test strength. Which technique is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Beta testing"
+        },
+        {
+          "key": "B",
+          "text": "Load testing"
+        },
+        {
+          "key": "C",
+          "text": "Mutation testing"
+        },
+        {
+          "key": "D",
+          "text": "A code walkthrough"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Small code changes create mutants used to assess whether tests detect altered behavior.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q34",
+      "prompt": "A test passes on the original program and fails on its mutant. What is the mutant's status?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Equivalent by definition"
+        },
+        {
+          "key": "B",
+          "text": "Survived"
+        },
+        {
+          "key": "C",
+          "text": "Killed"
+        },
+        {
+          "key": "D",
+          "text": "Untested by definition"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "A failing test detects the changed behavior. The original should pass the test first.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q35",
+      "prompt": "All covering tests pass on a mutant. What is the most suitable next action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Declare the original program correct"
+        },
+        {
+          "key": "B",
+          "text": "Investigate weak tests or possible equivalence"
+        },
+        {
+          "key": "C",
+          "text": "Delete all assertions"
+        },
+        {
+          "key": "D",
+          "text": "Automatically classify it as a real production defect"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "A surviving mutant may expose a test gap, or it may be equivalent to the original.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q36",
+      "prompt": "What is an equivalent mutant?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A mutant that one test killed"
+        },
+        {
+          "key": "B",
+          "text": "A mutant that always crashes"
+        },
+        {
+          "key": "C",
+          "text": "A changed program with the same observable behavior for every allowed input"
+        },
+        {
+          "key": "D",
+          "text": "A mutant with identical source text"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "No valid behavioral test can distinguish a truly equivalent mutant.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q37",
+      "prompt": "For this quiz, mutation score excludes known equivalent mutants. Which formula applies?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Equivalent / killed x 100"
+        },
+        {
+          "key": "B",
+          "text": "Survived / total x 100"
+        },
+        {
+          "key": "C",
+          "text": "Killed / (total - equivalent) x 100"
+        },
+        {
+          "key": "D",
+          "text": "Killed / equivalent x 100"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "This conventional adjusted score measures killed mutants among the non-equivalent mutants. Tools may report different denominators.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q38",
+      "prompt": "There are 20 mutants, 4 are known equivalent, and 12 are killed. What is the adjusted mutation score?",
+      "options": [
+        {
+          "key": "A",
+          "text": "75%"
+        },
+        {
+          "key": "B",
+          "text": "60%"
+        },
+        {
+          "key": "C",
+          "text": "80%"
+        },
+        {
+          "key": "D",
+          "text": "100%"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "12 / (20 - 4) x 100 = 75%.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q39",
+      "prompt": "All four non-equivalent mutants are killed. What is the score for that mutant set?",
+      "options": [
+        {
+          "key": "A",
+          "text": "100%"
+        },
+        {
+          "key": "B",
+          "text": "25%"
+        },
+        {
+          "key": "C",
+          "text": "80%"
+        },
+        {
+          "key": "D",
+          "text": "0%"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "4 / 4 x 100 = 100%. This says nothing about faults outside the selected mutant set.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q40",
+      "prompt": "A password rule is length >= 8. A mutant uses length > 8. Which input length distinguishes them?",
+      "options": [
+        {
+          "key": "A",
+          "text": "7"
+        },
+        {
+          "key": "B",
+          "text": "9"
+        },
+        {
+          "key": "C",
+          "text": "12"
+        },
+        {
+          "key": "D",
+          "text": "8"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Exactly eight characters are accepted by the original and rejected by the mutant.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q41",
+      "prompt": "Tests use only password lengths 5 and 10 for a >=8 rule mutated to >8. What happens?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The mutant can survive these tests"
+        },
+        {
+          "key": "B",
+          "text": "The length-5 test kills it"
+        },
+        {
+          "key": "C",
+          "text": "The length-10 test kills it"
+        },
+        {
+          "key": "D",
+          "text": "It must be equivalent for every input"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Both versions reject 5 and accept 10. The tests miss the boundary difference at 8.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q42",
+      "prompt": "The original returns x+y and a mutant returns x-y. Which test with an expected value kills the mutant?",
+      "options": [
+        {
+          "key": "A",
+          "text": "x=5, y=2, expected 7"
+        },
+        {
+          "key": "B",
+          "text": "x=5, y=0, expected 5"
+        },
+        {
+          "key": "C",
+          "text": "x=0, y=0, expected 0"
+        },
+        {
+          "key": "D",
+          "text": "x=-3, y=0, expected -3"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "The mutant returns 3 instead of 7. When y=0 the two expressions produce the same result.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q43",
+      "prompt": "A test executes mutated code but checks no relevant output or state. What weakness may this reveal?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Too much acceptance testing"
+        },
+        {
+          "key": "B",
+          "text": "The mutant is necessarily equivalent"
+        },
+        {
+          "key": "C",
+          "text": "Execution coverage without useful assertions"
+        },
+        {
+          "key": "D",
+          "text": "A guarantee of correct behavior"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "A test must observe and check the behavioral difference, not merely reach the changed code.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q44",
+      "prompt": "What does a 100% mutation score prove?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The selected non-equivalent mutants were detected under the stated scoring rule"
+        },
+        {
+          "key": "B",
+          "text": "Every real defect has been found"
+        },
+        {
+          "key": "C",
+          "text": "Every possible input has been tested"
+        },
+        {
+          "key": "D",
+          "text": "The program is safe to release under any conditions"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Mutation adequacy is limited by the selected operators, code, tests and scoring convention.",
+      "topic": "Mutation testing",
+      "source": "Study reference: PDF 5, pp. 44-63"
+    },
+    {
+      "id": "q45",
+      "prompt": "A module sometimes uses an uninitialized variable. Which technique directly targets definitions and uses?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Data-flow testing"
+        },
+        {
+          "key": "B",
+          "text": "Installation testing"
+        },
+        {
+          "key": "C",
+          "text": "Usability testing"
+        },
+        {
+          "key": "D",
+          "text": "Beta testing"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Data-flow testing examines how variable values are defined, used and overwritten.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q46",
+      "prompt": "In the statement total = price * quantity, which description is correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "price and quantity are defined; total has a predicate use"
+        },
+        {
+          "key": "B",
+          "text": "All three variables have only predicate uses"
+        },
+        {
+          "key": "C",
+          "text": "No variable is used or defined"
+        },
+        {
+          "key": "D",
+          "text": "total is defined; price and quantity have computational uses"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "The assignment defines total and reads price and quantity to compute its value.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q47",
+      "prompt": "In if (balance >= amount), how are balance and amount used?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Definitions"
+        },
+        {
+          "key": "B",
+          "text": "Kills only"
+        },
+        {
+          "key": "C",
+          "text": "Predicate uses"
+        },
+        {
+          "key": "D",
+          "text": "Unused declarations"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "They are read to decide which control-flow outcome to take.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q48",
+      "prompt": "What makes a definition-to-use path definition-clear for variable x?",
+      "options": [
+        {
+          "key": "A",
+          "text": "No other variable changes"
+        },
+        {
+          "key": "B",
+          "text": "No redefinition of x occurs between that definition and the use"
+        },
+        {
+          "key": "C",
+          "text": "The path must contain a loop"
+        },
+        {
+          "key": "D",
+          "text": "The use must be a print statement"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "A redefinition replaces the earlier value and breaks that definition-to-use association along the path.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q49",
+      "prompt": "Consider x=1; x=2; print(x). Which definition supplies the printed value?",
+      "options": [
+        {
+          "key": "A",
+          "text": "x=1"
+        },
+        {
+          "key": "B",
+          "text": "Both definitions equally"
+        },
+        {
+          "key": "C",
+          "text": "x=2"
+        },
+        {
+          "key": "D",
+          "text": "Neither definition"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The second assignment overwrites the first value before the use.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q50",
+      "prompt": "Consider x=5; y=10; z=x+y; if (z>10). Which variable has the predicate use in the if?",
+      "options": [
+        {
+          "key": "A",
+          "text": "x"
+        },
+        {
+          "key": "B",
+          "text": "z"
+        },
+        {
+          "key": "C",
+          "text": "y"
+        },
+        {
+          "key": "D",
+          "text": "None of them"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The condition reads z, not x or y directly.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q51",
+      "prompt": "In x=5; y=10; z=x+y; if (z>10), can input data make the condition false without changing this code?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes; enter x=3 and y=5 even though assignments remain fixed"
+        },
+        {
+          "key": "B",
+          "text": "No; z is always 15"
+        },
+        {
+          "key": "C",
+          "text": "Yes; run the same test twice"
+        },
+        {
+          "key": "D",
+          "text": "Yes; ignore the assignment to y"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The constants force z=15. To vary these values, the routine would need parameters or another controllable input source.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q52",
+      "prompt": "The data-flow table in the notes lists a predicate use of x at if(z>10). What is the correction?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The predicate use there is of y"
+        },
+        {
+          "key": "B",
+          "text": "The predicate use there is of z"
+        },
+        {
+          "key": "C",
+          "text": "There is no predicate in an if"
+        },
+        {
+          "key": "D",
+          "text": "x is defined by the comparison"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Use classification follows the variables actually read in the expression.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q53",
+      "prompt": "Why identify def-use pairs before choosing tests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To avoid checking any outputs"
+        },
+        {
+          "key": "B",
+          "text": "To target paths linking assignments to later uses"
+        },
+        {
+          "key": "C",
+          "text": "To replace requirements entirely"
+        },
+        {
+          "key": "D",
+          "text": "To make all paths automatically feasible"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The pairs provide concrete structural targets for data-flow test design.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q54",
+      "prompt": "A variable is assigned and then overwritten before any read. What should be investigated?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A missing browser"
+        },
+        {
+          "key": "B",
+          "text": "An unavoidable syntax error"
+        },
+        {
+          "key": "C",
+          "text": "Proof of complete testing"
+        },
+        {
+          "key": "D",
+          "text": "An unused definition or unnecessary assignment"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "A definition with no intervening use may be redundant or may indicate a logic error; context determines whether it is a defect.",
+      "topic": "Data-flow testing",
+      "source": "Study reference: PDF 5, pp. 64-71"
+    },
+    {
+      "id": "q55",
+      "prompt": "A loop may fail to terminate because its counter is never updated. Which technique is most directly relevant?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Contract acceptance testing"
+        },
+        {
+          "key": "B",
+          "text": "Compatibility testing"
+        },
+        {
+          "key": "C",
+          "text": "A UI color review"
+        },
+        {
+          "key": "D",
+          "text": "Loop testing"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Loop testing targets initialization, iteration, boundary and termination behavior.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q56",
+      "prompt": "A while loop can legally run zero times. Which case is especially useful for checking its entry condition?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The loop executes only its typical count"
+        },
+        {
+          "key": "B",
+          "text": "The condition is false before the first iteration"
+        },
+        {
+          "key": "C",
+          "text": "The loop is removed"
+        },
+        {
+          "key": "D",
+          "text": "Only a very large positive count is used"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Zero iterations tests the skip path and initialization behavior outside the body.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q57",
+      "prompt": "For a simple loop with maximum permitted count n=10, which set best targets small counts and the upper boundary?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3, 4, 5 only"
+        },
+        {
+          "key": "B",
+          "text": "10 only"
+        },
+        {
+          "key": "C",
+          "text": "0, 1, 2, 9, 10, 11 where meaningful"
+        },
+        {
+          "key": "D",
+          "text": "100, 200, 300 only"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Use skip, one, two, near-limit, limit and just-over-limit cases. For 11, verify required rejection or handling rather than assuming it is valid.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q58",
+      "prompt": "One loop runs inside the body of another. What structure is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Independent concatenated loops"
+        },
+        {
+          "key": "B",
+          "text": "A self-free graph"
+        },
+        {
+          "key": "C",
+          "text": "A driver and a stub"
+        },
+        {
+          "key": "D",
+          "text": "Nested loops"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Nested loops execute an inner loop as part of an outer iteration.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q59",
+      "prompt": "Two loops run one after another and share no control-dependent data. How can they first be tested?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only as one nested loop"
+        },
+        {
+          "key": "B",
+          "text": "Only with every Cartesian product of all iteration counts"
+        },
+        {
+          "key": "C",
+          "text": "Without testing either boundary"
+        },
+        {
+          "key": "D",
+          "text": "As independent simple loops"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Independent concatenated loops can be tested individually; dependency requires additional combined tests.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q60",
+      "prompt": "A second loop uses the final counter value from the first. What extra concern matters?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the color of the output"
+        },
+        {
+          "key": "B",
+          "text": "The second loop cannot have defects"
+        },
+        {
+          "key": "C",
+          "text": "The dependency between the loops"
+        },
+        {
+          "key": "D",
+          "text": "The first loop never needs tests"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Boundary and state interactions across the loops must also be checked.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q61",
+      "prompt": "For nested loops, what is a practical initial approach?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Test only the outermost loop at a huge count"
+        },
+        {
+          "key": "B",
+          "text": "Skip all inner-loop boundaries"
+        },
+        {
+          "key": "C",
+          "text": "Assume inner loops terminate because the outer loop does"
+        },
+        {
+          "key": "D",
+          "text": "Test the innermost loop while outer loops use small valid counts"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Work outward systematically and add tests for interactions and boundaries.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q62",
+      "prompt": "In for(i=1; i<=rows; i++), rows=0. What does the shown loop actually do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It executes its body zero times"
+        },
+        {
+          "key": "B",
+          "text": "It prints one row"
+        },
+        {
+          "key": "C",
+          "text": "It runs forever"
+        },
+        {
+          "key": "D",
+          "text": "It automatically reports an input error"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "The condition 1<=0 is false. Rejection would require separate validation code.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q63",
+      "prompt": "In nested loops i=1..rows and j=1..i, how many inner-body executions occur when rows=3?",
+      "options": [
+        {
+          "key": "A",
+          "text": "6"
+        },
+        {
+          "key": "B",
+          "text": "3"
+        },
+        {
+          "key": "C",
+          "text": "9"
+        },
+        {
+          "key": "D",
+          "text": "4"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "The counts are 1 + 2 + 3 = 6.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q64",
+      "prompt": "Which statement about loop testing is accurate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It can reveal off-by-one and termination defects"
+        },
+        {
+          "key": "B",
+          "text": "It guarantees that no infinite loop is possible for any input"
+        },
+        {
+          "key": "C",
+          "text": "It automatically limits production loop iterations"
+        },
+        {
+          "key": "D",
+          "text": "It is not useful for finding defects"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Testing can reveal defects; it does not change the code or prove correctness for all executions.",
+      "topic": "Loop testing",
+      "source": "Study reference: PDF 5, pp. 77-91"
+    },
+    {
+      "id": "q65",
+      "prompt": "Code is scanned for suspicious patterns before it runs. Which tool category fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Load generation"
+        },
+        {
+          "key": "B",
+          "text": "Screen recording"
+        },
+        {
+          "key": "C",
+          "text": "Acceptance sign-off"
+        },
+        {
+          "key": "D",
+          "text": "Static analysis"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Static analyzers inspect code without executing the target program.",
+      "topic": "Testing tools",
+      "source": "Study reference: PDF 5, pp. 72-76"
+    },
+    {
+      "id": "q66",
+      "prompt": "A team needs to see which Java branches its tests executed. Which listed tool is designed for coverage measurement?",
+      "options": [
+        {
+          "key": "A",
+          "text": "GDB"
+        },
+        {
+          "key": "B",
+          "text": "JUnit alone as a coverage meter"
+        },
+        {
+          "key": "C",
+          "text": "A defect tracker"
+        },
+        {
+          "key": "D",
+          "text": "JaCoCo"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "JaCoCo reports Java code coverage. A test framework and a coverage tool serve different roles.",
+      "topic": "Testing tools",
+      "source": "Study reference: PDF 5, pp. 72-76"
+    },
+    {
+      "id": "q67",
+      "prompt": "A Java developer wants a framework for writing and running unit tests. Which listed tool fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A graph matrix alone"
+        },
+        {
+          "key": "B",
+          "text": "JUnit"
+        },
+        {
+          "key": "C",
+          "text": "LLDB"
+        },
+        {
+          "key": "D",
+          "text": "A load balancer"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "JUnit is a Java testing framework; it does not make every test white-box automatically.",
+      "topic": "Testing tools",
+      "source": "Study reference: PDF 5, pp. 72-76"
+    },
+    {
+      "id": "q68",
+      "prompt": "A Python team needs to organize and run automated tests. Which listed framework fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "NUnit"
+        },
+        {
+          "key": "B",
+          "text": "JaCoCo"
+        },
+        {
+          "key": "C",
+          "text": "GDB"
+        },
+        {
+          "key": "D",
+          "text": "pytest"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "pytest is a Python testing framework. Coverage measurement can be added separately.",
+      "topic": "Testing tools",
+      "source": "Study reference: PDF 5, pp. 72-76"
+    },
+    {
+      "id": "q69",
+      "prompt": "A team wants automated code mutations to assess test strength. Which pair of listed tools fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "PIT and Stryker"
+        },
+        {
+          "key": "B",
+          "text": "GDB and LLDB"
+        },
+        {
+          "key": "C",
+          "text": "JUnit and NUnit as mutation engines"
+        },
+        {
+          "key": "D",
+          "text": "JaCoCo and EclEmma as mutation engines"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "PIT and Stryker are mutation testing tools.",
+      "topic": "Testing tools",
+      "source": "Study reference: PDF 5, pp. 72-76"
+    },
+    {
+      "id": "q70",
+      "prompt": "A developer steps through code and inspects variable values during a failing test. Which kind of tool is being used?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Acceptance checklist"
+        },
+        {
+          "key": "B",
+          "text": "Installation package"
+        },
+        {
+          "key": "C",
+          "text": "Graph matrix"
+        },
+        {
+          "key": "D",
+          "text": "Debugger"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Debuggers such as GDB and LLDB help inspect execution and diagnose a failure.",
+      "topic": "Testing tools",
+      "source": "Study reference: PDF 5, pp. 72-76"
+    },
+    {
+      "id": "q71",
+      "prompt": "A design document is checked for missing validation before code exists. What kind of testing is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Dynamic system testing"
+        },
+        {
+          "key": "B",
+          "text": "Static testing"
+        },
+        {
+          "key": "C",
+          "text": "Load testing"
+        },
+        {
+          "key": "D",
+          "text": "Beta testing"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Static testing examines work products without executing the target software.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q72",
+      "prompt": "Which item can be examined by static testing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only an installed executable"
+        },
+        {
+          "key": "B",
+          "text": "A requirements document"
+        },
+        {
+          "key": "C",
+          "text": "Only a running database"
+        },
+        {
+          "key": "D",
+          "text": "Only a user interface after release"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Requirements, designs, source code, tests and manuals can all be reviewed.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q73",
+      "prompt": "A requirement says the app must be fast but gives no measurable target. Which activity can find this issue early?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only production monitoring"
+        },
+        {
+          "key": "B",
+          "text": "Only branch execution"
+        },
+        {
+          "key": "C",
+          "text": "Only a driver calling a finished module"
+        },
+        {
+          "key": "D",
+          "text": "Requirements review"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "A review can reveal ambiguity before implementation.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q74",
+      "prompt": "A tool checks source code without running it. Is this included in static testing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes, automated static analysis is included"
+        },
+        {
+          "key": "B",
+          "text": "No, static testing includes only three manual meeting types"
+        },
+        {
+          "key": "C",
+          "text": "No, source code must run before any checks"
+        },
+        {
+          "key": "D",
+          "text": "Only when customers attend the meeting"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Static testing includes manual reviews and tool-based static analysis.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q75",
+      "prompt": "A team wants the most formal review, with defined roles, preparation, defect records and exit criteria. Which type fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Author-led informal walkthrough"
+        },
+        {
+          "key": "B",
+          "text": "Inspection"
+        },
+        {
+          "key": "C",
+          "text": "Beta test"
+        },
+        {
+          "key": "D",
+          "text": "Load test"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Inspections follow a rigorous, defined review process.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q76",
+      "prompt": "Who normally manages and facilitates an inspection?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Author automatically in every inspection"
+        },
+        {
+          "key": "B",
+          "text": "Customer automatically in every inspection"
+        },
+        {
+          "key": "C",
+          "text": "Moderator"
+        },
+        {
+          "key": "D",
+          "text": "The program compiler"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The moderator guides the process and helps the group meet its objectives.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q77",
+      "prompt": "Who records defects and action items during a formal review?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the customer"
+        },
+        {
+          "key": "B",
+          "text": "Only the compiler"
+        },
+        {
+          "key": "C",
+          "text": "Recorder or scribe"
+        },
+        {
+          "key": "D",
+          "text": "Every role except the recorder"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The recorder maintains the defect and decision record.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q78",
+      "prompt": "What is the author's usual role after accepted review defects are recorded?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Change the test results to pass"
+        },
+        {
+          "key": "B",
+          "text": "Delete the defect log"
+        },
+        {
+          "key": "C",
+          "text": "Correct the work product"
+        },
+        {
+          "key": "D",
+          "text": "Approve their own work without follow-up"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Rework addresses the accepted findings; follow-up checks the corrections.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q79",
+      "prompt": "What should reviewers normally do before a formal inspection meeting?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Wait until release to read it"
+        },
+        {
+          "key": "B",
+          "text": "Run stress tests instead of reading it"
+        },
+        {
+          "key": "C",
+          "text": "Study the work product individually using the review guidance"
+        },
+        {
+          "key": "D",
+          "text": "Rewrite the entire module without reporting defects"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Individual preparation improves the quality and efficiency of the meeting.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q80",
+      "prompt": "A developer leads peers through code step by step to explain behavior and collect feedback. Which review fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Formal acceptance testing"
+        },
+        {
+          "key": "B",
+          "text": "Walkthrough"
+        },
+        {
+          "key": "C",
+          "text": "Stress testing"
+        },
+        {
+          "key": "D",
+          "text": "Bottom-up integration"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Walkthroughs are usually author-led and emphasize understanding, feedback and defect detection.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q81",
+      "prompt": "A design needs evaluation by qualified peers for correctness, completeness and maintainability. Which review fits best?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Management budget review alone"
+        },
+        {
+          "key": "B",
+          "text": "Beta testing"
+        },
+        {
+          "key": "C",
+          "text": "Installation testing"
+        },
+        {
+          "key": "D",
+          "text": "Technical review"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Technical reviews focus on technical quality. Management attendance does not define them.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q82",
+      "prompt": "A team claims technical reviews mainly concern management oversight rather than technical correctness. What is the best correction?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Technical reviews cannot examine design"
+        },
+        {
+          "key": "B",
+          "text": "Technical reviews focus on technical evaluation by qualified participants"
+        },
+        {
+          "key": "C",
+          "text": "Every review must exclude all technical experts"
+        },
+        {
+          "key": "D",
+          "text": "Walkthroughs are the only reviews that find defects"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The early slides conflict with the later, more accurate technical-review section.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q83",
+      "prompt": "In an average function, reviewers find division by len(numbers). Which input is a key risk?",
+      "options": [
+        {
+          "key": "A",
+          "text": "An empty list"
+        },
+        {
+          "key": "B",
+          "text": "A list of four positive numbers only"
+        },
+        {
+          "key": "C",
+          "text": "A list with one valid number necessarily"
+        },
+        {
+          "key": "D",
+          "text": "Any sorted nonempty list necessarily"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "An empty list gives a zero divisor unless the function handles it first.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q84",
+      "prompt": "The code adds braces and a semicolon but still accepts negative patient ages. What remains?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Missing input validation"
+        },
+        {
+          "key": "B",
+          "text": "No remaining issue because syntax is fixed"
+        },
+        {
+          "key": "C",
+          "text": "A guaranteed runtime crash for all ages"
+        },
+        {
+          "key": "D",
+          "text": "An integration driver is mandatory"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "A syntax correction does not enforce the required age domain.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q85",
+      "prompt": "A fund-transfer design checks balance but omits the daily limit. How should this be detected before coding?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Wait for installation testing only"
+        },
+        {
+          "key": "B",
+          "text": "Review the design against the business rules"
+        },
+        {
+          "key": "C",
+          "text": "Measure statement coverage of absent code"
+        },
+        {
+          "key": "D",
+          "text": "Assume the balance check covers the limit"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "A checklist and traceability to requirements expose missing business checks.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q86",
+      "prompt": "A transfer debits the source, then crediting the destination fails. Which design requirement addresses partial completion?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Always display success"
+        },
+        {
+          "key": "B",
+          "text": "Ignore the credit failure"
+        },
+        {
+          "key": "C",
+          "text": "Retry debit unconditionally"
+        },
+        {
+          "key": "D",
+          "text": "Atomic transaction with rollback on failure"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Debit and credit should succeed together or be rolled back according to the transaction design.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q87",
+      "prompt": "Two transfers can read the same available balance at once. Which review concern is most relevant?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Password length validation"
+        },
+        {
+          "key": "B",
+          "text": "Concurrency control"
+        },
+        {
+          "key": "C",
+          "text": "The daily limit check alone"
+        },
+        {
+          "key": "D",
+          "text": "Formatting of audit messages alone"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Concurrent updates need controls that preserve balance consistency.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q88",
+      "prompt": "What is the purpose of review follow-up?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Rerun only browser tests"
+        },
+        {
+          "key": "B",
+          "text": "Remove all unresolved defects from the log"
+        },
+        {
+          "key": "C",
+          "text": "Check required corrections and review exit criteria"
+        },
+        {
+          "key": "D",
+          "text": "Start coding without checking rework"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Follow-up confirms actions are addressed and unresolved issues are tracked.",
+      "topic": "Static testing and reviews",
+      "source": "Study reference: PDF 4, pp. 1-46"
+    },
+    {
+      "id": "q89",
+      "prompt": "A developer tests one bill-calculation function in isolation. Which testing level fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Whole-system acceptance testing"
+        },
+        {
+          "key": "B",
+          "text": "Unit or component testing"
+        },
+        {
+          "key": "C",
+          "text": "System integration between organizations"
+        },
+        {
+          "key": "D",
+          "text": "Beta testing"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Unit testing focuses on an individual component or function.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q90",
+      "prompt": "Module B is ready, but its caller A is still under development. What test support is needed to call B with inputs?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Driver"
+        },
+        {
+          "key": "B",
+          "text": "Stub for B's caller that B calls"
+        },
+        {
+          "key": "C",
+          "text": "A production release"
+        },
+        {
+          "key": "D",
+          "text": "A mutation score report"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "A driver replaces the calling module and invokes the unit under test.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q91",
+      "prompt": "Module B is ready, but lower module D called by B is unfinished. What should simulate D?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Driver that only calls B"
+        },
+        {
+          "key": "B",
+          "text": "A system test plan alone"
+        },
+        {
+          "key": "C",
+          "text": "A branch report"
+        },
+        {
+          "key": "D",
+          "text": "Stub"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "A stub replaces a dependency called by the unit under test.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q92",
+      "prompt": "A test harness reads values from a file and invokes a calculation routine. What role is it performing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Called-module stub"
+        },
+        {
+          "key": "B",
+          "text": "Acceptance customer"
+        },
+        {
+          "key": "C",
+          "text": "Driver"
+        },
+        {
+          "key": "D",
+          "text": "Static analyzer"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Drivers can supply hard-coded, user-entered or file-based inputs.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q93",
+      "prompt": "A payment module calls an unfinished tax service. A dummy service returns a chosen tax value. What is the dummy?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Driver"
+        },
+        {
+          "key": "B",
+          "text": "Stub"
+        },
+        {
+          "key": "C",
+          "text": "Coverage criterion"
+        },
+        {
+          "key": "D",
+          "text": "Technical review"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The dummy replaces a called dependency and returns controlled behavior.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q94",
+      "prompt": "Module B needs an unfinished caller and two unfinished callees. Which support may be needed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Three drivers only"
+        },
+        {
+          "key": "B",
+          "text": "Three stubs only"
+        },
+        {
+          "key": "C",
+          "text": "One driver and two stubs"
+        },
+        {
+          "key": "D",
+          "text": "No support because B is finished"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The driver invokes B; each stub simulates a dependency B calls.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q95",
+      "prompt": "When should temporary stubs be replaced for integration confidence?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only after every release forever"
+        },
+        {
+          "key": "B",
+          "text": "Never if unit tests pass"
+        },
+        {
+          "key": "C",
+          "text": "Only if the dummy prints text"
+        },
+        {
+          "key": "D",
+          "text": "As real dependencies become available, then test the real interactions"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "A passing test with a stub does not prove the real dependency's interface or behavior.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q96",
+      "prompt": "Why might a unit test use a stub that returns an error?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To exercise the unit's error-handling path"
+        },
+        {
+          "key": "B",
+          "text": "To guarantee that the real service never fails"
+        },
+        {
+          "key": "C",
+          "text": "To replace all acceptance tests"
+        },
+        {
+          "key": "D",
+          "text": "To hide the module's behavior"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Controlled error responses allow repeatable tests of dependency-failure handling.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q97",
+      "prompt": "A ready calsum(a,b,c) is tested while main is absent. Which temporary program is appropriate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A stub that replaces calsum itself"
+        },
+        {
+          "key": "B",
+          "text": "A driver that calls calsum with test values and checks its return"
+        },
+        {
+          "key": "C",
+          "text": "A browser compatibility suite only"
+        },
+        {
+          "key": "D",
+          "text": "A review of a different module"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The routine under test remains real; the driver provides the missing calling context.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q98",
+      "prompt": "All unit tests pass with stubs. What still needs checking when the real modules are connected?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Interfaces, shared data and combined behavior"
+        },
+        {
+          "key": "B",
+          "text": "Only the spelling of module names"
+        },
+        {
+          "key": "C",
+          "text": "Nothing; unit success proves integration"
+        },
+        {
+          "key": "D",
+          "text": "Only the length of the test file"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "The real modules may disagree on types, formats, sequence or error handling.",
+      "topic": "Unit testing, drivers and stubs",
+      "source": "Study reference: PDF 4, pp. 47-56"
+    },
+    {
+      "id": "q99",
+      "prompt": "Two modules pass unit tests but exchange amounts in different units. Which testing level directly targets this issue?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Inspection of a user manual only"
+        },
+        {
+          "key": "B",
+          "text": "Standalone unit testing of an unrelated module"
+        },
+        {
+          "key": "C",
+          "text": "Installation testing only"
+        },
+        {
+          "key": "D",
+          "text": "Integration testing"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Integration tests target interfaces and interactions between components.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q100",
+      "prompt": "What is big-bang integration?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Adding one module at a time only"
+        },
+        {
+          "key": "B",
+          "text": "Starting only with low-level modules"
+        },
+        {
+          "key": "C",
+          "text": "Starting only with the main module and stubs"
+        },
+        {
+          "key": "D",
+          "text": "Combining many modules at once and testing their interactions"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Combining everything at once can make fault isolation harder.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q101",
+      "prompt": "Why can incremental integration help locate defects?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It eliminates the need for test cases"
+        },
+        {
+          "key": "B",
+          "text": "A smaller set of newly added interactions is examined at each step"
+        },
+        {
+          "key": "C",
+          "text": "It proves every module is bug-free"
+        },
+        {
+          "key": "D",
+          "text": "It uses no real modules"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The narrower change between integration steps helps isolate failures.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q102",
+      "prompt": "The main controller is ready, but its lower modules are unfinished. Which approach naturally fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Bottom-up integration with only drivers"
+        },
+        {
+          "key": "B",
+          "text": "Big bang with every real module"
+        },
+        {
+          "key": "C",
+          "text": "Top-down integration with stubs"
+        },
+        {
+          "key": "D",
+          "text": "Acceptance testing without a controller"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Top-down integration begins with higher-level modules and simulates missing callees.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q103",
+      "prompt": "Low-level services are ready, but the high-level controller is unfinished. Which approach naturally fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Bottom-up integration with drivers"
+        },
+        {
+          "key": "B",
+          "text": "Top-down integration with only stubs"
+        },
+        {
+          "key": "C",
+          "text": "Beta testing"
+        },
+        {
+          "key": "D",
+          "text": "Inspection alone"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Drivers call the low-level services until the real callers are integrated.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q104",
+      "prompt": "Testing begins from both the top and bottom, then connects at middle modules. Which approach is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sandwich or hybrid integration"
+        },
+        {
+          "key": "B",
+          "text": "Pure big bang"
+        },
+        {
+          "key": "C",
+          "text": "Only unit testing"
+        },
+        {
+          "key": "D",
+          "text": "Mutation testing"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "The hybrid approach combines top-down and bottom-up integration.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q105",
+      "prompt": "Which mismatch is an integration concern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A standalone function returns the wrong value even with correct inputs"
+        },
+        {
+          "key": "B",
+          "text": "Caller passes parameters in the wrong order for the callee"
+        },
+        {
+          "key": "C",
+          "text": "A requirements sentence is ambiguous before coding"
+        },
+        {
+          "key": "D",
+          "text": "A single loop fails to increment its local counter"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Interface mismatches can cause failures even when components work in isolation.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q106",
+      "prompt": "An order module calls payment before validating the cart, contrary to the design. Which interaction aspect is wrong?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Control-flow or call sequence"
+        },
+        {
+          "key": "B",
+          "text": "Parameter data types only"
+        },
+        {
+          "key": "C",
+          "text": "Numeric precision only"
+        },
+        {
+          "key": "D",
+          "text": "Error-message translation only"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Integration checks include the correct sequence of module interactions.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q107",
+      "prompt": "A service fails, but its caller treats the error as success. What should an integration test check?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Error propagation and handling between the modules"
+        },
+        {
+          "key": "B",
+          "text": "Only the successful response path"
+        },
+        {
+          "key": "C",
+          "text": "Only the number of lines in the caller"
+        },
+        {
+          "key": "D",
+          "text": "Only an unrelated module's loops"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "The caller must handle the callee's failure according to the interface contract.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q108",
+      "prompt": "Purchase amount is 2000. Apply 10% discount, then 5% tax on the discounted amount. What is the final bill?",
+      "options": [
+        {
+          "key": "A",
+          "text": "1900"
+        },
+        {
+          "key": "B",
+          "text": "1800"
+        },
+        {
+          "key": "C",
+          "text": "1890"
+        },
+        {
+          "key": "D",
+          "text": "2100"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Discounted amount is 1800; tax is 90; final bill is 1890.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q109",
+      "prompt": "Under the same discount-then-tax rule, what is the final bill for amount 1000?",
+      "options": [
+        {
+          "key": "A",
+          "text": "950"
+        },
+        {
+          "key": "B",
+          "text": "900"
+        },
+        {
+          "key": "C",
+          "text": "1050"
+        },
+        {
+          "key": "D",
+          "text": "945"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "The inclusive threshold gives a 100 discount; tax on 900 is 45.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q110",
+      "prompt": "The discount module correctly returns 1800 for a 2000 purchase, but tax receives the original 2000. What should testing target?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the discount percentage in isolation"
+        },
+        {
+          "key": "B",
+          "text": "Only the UI text color"
+        },
+        {
+          "key": "C",
+          "text": "Only whether the source compiles"
+        },
+        {
+          "key": "D",
+          "text": "The data passed across the module interface"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "The component output is correct, but the connection uses the wrong value.",
+      "topic": "Integration testing",
+      "source": "Study reference: PDF 4, pp. 57-72"
+    },
+    {
+      "id": "q111",
+      "prompt": "A tester checks a discount rule by comparing inputs and outputs with the SRS. Which testing type fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Functional testing"
+        },
+        {
+          "key": "B",
+          "text": "Load testing"
+        },
+        {
+          "key": "C",
+          "text": "Recovery testing"
+        },
+        {
+          "key": "D",
+          "text": "Reliability testing only"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Functional testing checks what the system is required to do.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q112",
+      "prompt": "Can functional testing occur at unit, integration and system levels?",
+      "options": [
+        {
+          "key": "A",
+          "text": "No, it is always only system testing"
+        },
+        {
+          "key": "B",
+          "text": "No, it is always only acceptance testing"
+        },
+        {
+          "key": "C",
+          "text": "Yes, the same test type can apply at several levels"
+        },
+        {
+          "key": "D",
+          "text": "No, it can only be static"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "A test level describes scope; a test type describes the aspect being tested.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q113",
+      "prompt": "A discount is 10% when amount >=1000; there is no tax in this question. Which whole-number set targets the threshold?",
+      "options": [
+        {
+          "key": "A",
+          "text": "100, 200, 300"
+        },
+        {
+          "key": "B",
+          "text": "1200, 1500, 2000"
+        },
+        {
+          "key": "C",
+          "text": "999, 1000, 1001"
+        },
+        {
+          "key": "D",
+          "text": "1, 2, 3"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The set checks just below, exactly at and just above the boundary.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q114",
+      "prompt": "For that discount-only rule, what should final_bill(1001) return?",
+      "options": [
+        {
+          "key": "A",
+          "text": "1001"
+        },
+        {
+          "key": "B",
+          "text": "900.9"
+        },
+        {
+          "key": "C",
+          "text": "901.9"
+        },
+        {
+          "key": "D",
+          "text": "945.945"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "1001 - 10% of 1001 = 900.9. This question excludes tax.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q115",
+      "prompt": "The function requires a nonnegative numeric amount. Which test checks an invalid input?",
+      "options": [
+        {
+          "key": "A",
+          "text": "amount = 500"
+        },
+        {
+          "key": "B",
+          "text": "amount = 1000"
+        },
+        {
+          "key": "C",
+          "text": "amount = -100"
+        },
+        {
+          "key": "D",
+          "text": "amount = 1500"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "A negative amount violates the stated input rule.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q116",
+      "prompt": "The implementation raises TypeError for nonnumeric input. What should a test of final_bill('abc') expect?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A bill of zero"
+        },
+        {
+          "key": "B",
+          "text": "TypeError"
+        },
+        {
+          "key": "C",
+          "text": "A bill of 900"
+        },
+        {
+          "key": "D",
+          "text": "ValueError for a negative number"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The type check runs before the business calculation.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q117",
+      "prompt": "A calculated decimal result may have tiny floating-point differences. Which check is most suitable?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ignore the result entirely"
+        },
+        {
+          "key": "B",
+          "text": "Require every floating-point representation to be identical"
+        },
+        {
+          "key": "C",
+          "text": "Always round all inputs to zero"
+        },
+        {
+          "key": "D",
+          "text": "Compare within the required tolerance or precision"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "A tolerance-aware assertion matches the agreed numeric precision.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q118",
+      "prompt": "A test's actual result differs from its expected result. What should the tester first establish?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Whether the software, expectation, data or environment caused the mismatch"
+        },
+        {
+          "key": "B",
+          "text": "That the developer must be wrong without investigation"
+        },
+        {
+          "key": "C",
+          "text": "That the test should always be marked pass"
+        },
+        {
+          "key": "D",
+          "text": "That every mismatch is an equivalent mutant"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "A failed test needs analysis; the expected result or test setup can also be wrong.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q119",
+      "prompt": "A defect report needs to help a developer reproduce a failure. Which details are most useful?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only a message saying it does not work"
+        },
+        {
+          "key": "B",
+          "text": "Only the tester's name"
+        },
+        {
+          "key": "C",
+          "text": "Only the number of tests in the suite"
+        },
+        {
+          "key": "D",
+          "text": "Steps, inputs, expected result, actual result and relevant environment"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Reproducible facts make diagnosis and correction easier.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q120",
+      "prompt": "A bug fix is delivered. Which pairing is correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Regression checks only the original bug; confirmation checks unrelated features"
+        },
+        {
+          "key": "B",
+          "text": "Both terms mean customer sign-off only"
+        },
+        {
+          "key": "C",
+          "text": "Confirmation testing checks the fix; regression testing checks side effects"
+        },
+        {
+          "key": "D",
+          "text": "Neither involves running tests"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The two activities have different goals and can use overlapping tests.",
+      "topic": "Functional testing and test design",
+      "source": "Study reference: PDF 4, pp. 73-86"
+    },
+    {
+      "id": "q121",
+      "prompt": "A complete integrated application is checked against its overall requirements. Which level fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "System testing"
+        },
+        {
+          "key": "B",
+          "text": "An isolated unit test"
+        },
+        {
+          "key": "C",
+          "text": "Only a code inspection"
+        },
+        {
+          "key": "D",
+          "text": "Only testing a single stub"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "System testing considers the behavior of the complete system.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q122",
+      "prompt": "A team checks login, search, checkout and order confirmation as a full workflow. What does this primarily test?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only a single variable definition"
+        },
+        {
+          "key": "B",
+          "text": "An end-to-end system function"
+        },
+        {
+          "key": "C",
+          "text": "Only installation files"
+        },
+        {
+          "key": "D",
+          "text": "Only the review moderator"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The workflow crosses several components and checks a user-visible system function.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q123",
+      "prompt": "The complete app is tested for both payment correctness and response time. Which description is accurate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "System testing is limited to performance"
+        },
+        {
+          "key": "B",
+          "text": "System testing is limited to acceptance sign-off"
+        },
+        {
+          "key": "C",
+          "text": "System testing can include functional and non-functional tests"
+        },
+        {
+          "key": "D",
+          "text": "System testing can never use internal knowledge"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "System is a testing level; many test types and techniques can apply at that level.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q124",
+      "prompt": "The requirement expects 500 simultaneous users. Tests measure behavior at that expected level. Which type fits best?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stress testing beyond the limit"
+        },
+        {
+          "key": "B",
+          "text": "Static inspection"
+        },
+        {
+          "key": "C",
+          "text": "Load testing"
+        },
+        {
+          "key": "D",
+          "text": "Mutation testing"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Load testing evaluates behavior under specified or expected workloads.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q125",
+      "prompt": "The expected load is 500 users, but the team deliberately increases it far beyond that to examine failure and recovery. Which type fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ordinary functional testing only"
+        },
+        {
+          "key": "B",
+          "text": "A code walkthrough"
+        },
+        {
+          "key": "C",
+          "text": "Contract document review only"
+        },
+        {
+          "key": "D",
+          "text": "Stress testing"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Stress testing explores behavior beyond expected load or under constrained resources.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q126",
+      "prompt": "A signed-in user tries to view another user's private account. Which type targets this risk?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Usability testing only"
+        },
+        {
+          "key": "B",
+          "text": "Security testing"
+        },
+        {
+          "key": "C",
+          "text": "Installation testing only"
+        },
+        {
+          "key": "D",
+          "text": "Loop coverage only"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Authorization and data protection are security concerns.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q127",
+      "prompt": "Users cannot find the checkout button or understand the error messages. Which type is most relevant?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Usability testing"
+        },
+        {
+          "key": "B",
+          "text": "Mutation testing"
+        },
+        {
+          "key": "C",
+          "text": "Bottom-up integration"
+        },
+        {
+          "key": "D",
+          "text": "Statement coverage"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Usability examines how easily users can understand and complete tasks.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q128",
+      "prompt": "A web app is checked in Chrome, Firefox and Edge. Which type fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Compatibility testing"
+        },
+        {
+          "key": "B",
+          "text": "Only recovery testing"
+        },
+        {
+          "key": "C",
+          "text": "Only static analysis"
+        },
+        {
+          "key": "D",
+          "text": "Only mutation testing"
+        }
+      ],
+      "correctKey": "A",
+      "explanation": "Compatibility tests examine behavior across browsers, devices or environments.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q129",
+      "prompt": "After a server crash, the team checks restart behavior and data consistency. Which type fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only code style review"
+        },
+        {
+          "key": "B",
+          "text": "Only branch counting"
+        },
+        {
+          "key": "C",
+          "text": "Only beta feedback collection"
+        },
+        {
+          "key": "D",
+          "text": "Recovery testing"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Recovery testing checks how the system returns to an acceptable state after failure.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q130",
+      "prompt": "A team tests fresh installation, upgrade and uninstall behavior. Which type fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Data-flow testing"
+        },
+        {
+          "key": "B",
+          "text": "Installation testing"
+        },
+        {
+          "key": "C",
+          "text": "Condition coverage"
+        },
+        {
+          "key": "D",
+          "text": "Walkthrough"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The focus is the application's installation lifecycle.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q131",
+      "prompt": "The app runs continuously for 24 hours while failures and resource use are monitored. What is the main concern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only whether the source compiles"
+        },
+        {
+          "key": "B",
+          "text": "Only a single discount boundary"
+        },
+        {
+          "key": "C",
+          "text": "Stability over sustained use"
+        },
+        {
+          "key": "D",
+          "text": "Only review attendance"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Long-running tests can reveal reliability, endurance and resource-leak problems.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q132",
+      "prompt": "A system test plan lists scope, environment, schedule and entry/exit criteria. Why are exit criteria useful?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They identify prerequisites for starting testing"
+        },
+        {
+          "key": "B",
+          "text": "They specify how every individual test step is executed"
+        },
+        {
+          "key": "C",
+          "text": "They assign the root cause of each defect"
+        },
+        {
+          "key": "D",
+          "text": "They define agreed conditions for concluding the test activity"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Exit criteria support a transparent completion decision based on agreed evidence and risk.",
+      "topic": "System testing and quality attributes",
+      "source": "Study reference: PDF 4, pp. 87-98"
+    },
+    {
+      "id": "q133",
+      "prompt": "Bank employees perform realistic transfer tasks to decide whether the product supports their work. Which activity fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Unit testing of one operator"
+        },
+        {
+          "key": "B",
+          "text": "Graph matrix construction"
+        },
+        {
+          "key": "C",
+          "text": "Mutation testing"
+        },
+        {
+          "key": "D",
+          "text": "User acceptance testing"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "UAT checks fitness for user and business needs using representative tasks.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    },
+    {
+      "id": "q134",
+      "prompt": "A product has passed system tests but users find its workflow unsuitable. What does this show?",
+      "options": [
+        {
+          "key": "A",
+          "text": "System tests never check requirements"
+        },
+        {
+          "key": "B",
+          "text": "Passing system tests does not guarantee user acceptance"
+        },
+        {
+          "key": "C",
+          "text": "Acceptance testing is unnecessary"
+        },
+        {
+          "key": "D",
+          "text": "Users must accept every product that compiles"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "Acceptance focuses on business use and readiness, which earlier tests may not fully represent.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    },
+    {
+      "id": "q135",
+      "prompt": "Company staff evaluate a prerelease product in a controlled developer environment. Which acceptance form fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "External beta testing"
+        },
+        {
+          "key": "B",
+          "text": "Load testing by definition"
+        },
+        {
+          "key": "C",
+          "text": "Alpha testing"
+        },
+        {
+          "key": "D",
+          "text": "Bottom-up integration"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Alpha testing occurs in the developer's environment with representative evaluators; it is not simply any internal test.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    },
+    {
+      "id": "q136",
+      "prompt": "Selected external users try a prerelease app in their own environments and give feedback. Which form fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Code inspection"
+        },
+        {
+          "key": "B",
+          "text": "Unit testing"
+        },
+        {
+          "key": "C",
+          "text": "Top-down integration"
+        },
+        {
+          "key": "D",
+          "text": "Beta testing"
+        }
+      ],
+      "correctKey": "D",
+      "explanation": "Beta testing uses external, realistic use to collect feedback and expose issues.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    },
+    {
+      "id": "q137",
+      "prompt": "A customer verifies a stated contract condition that the system supports a specified workload. Which acceptance form fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Condition coverage"
+        },
+        {
+          "key": "B",
+          "text": "Contractual acceptance testing"
+        },
+        {
+          "key": "C",
+          "text": "Walkthrough"
+        },
+        {
+          "key": "D",
+          "text": "Loop testing"
+        }
+      ],
+      "correctKey": "B",
+      "explanation": "The purpose is checking contractual obligations. Performance techniques may supply the evidence.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    },
+    {
+      "id": "q138",
+      "prompt": "A release is checked against applicable regulatory requirements. Which acceptance form fits?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only a unit-test driver"
+        },
+        {
+          "key": "B",
+          "text": "Only statement coverage"
+        },
+        {
+          "key": "C",
+          "text": "Regulatory acceptance testing"
+        },
+        {
+          "key": "D",
+          "text": "Only a code walkthrough"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The objective is acceptance against applicable regulatory obligations; specific rules depend on the context.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    },
+    {
+      "id": "q139",
+      "prompt": "Which is the most useful acceptance criterion?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The application looks fine to one developer"
+        },
+        {
+          "key": "B",
+          "text": "There are exactly 1000 lines of code"
+        },
+        {
+          "key": "C",
+          "text": "All agreed critical workflows pass, with no unresolved critical defects under the release policy"
+        },
+        {
+          "key": "D",
+          "text": "The team has held three meetings"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "Acceptance criteria should be clear, testable and agreed. Actual release thresholds depend on the project.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    },
+    {
+      "id": "q140",
+      "prompt": "Acceptance tests reveal a blocking business defect. What is the appropriate next step?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Release automatically because unit tests passed"
+        },
+        {
+          "key": "B",
+          "text": "Delete the failed test"
+        },
+        {
+          "key": "C",
+          "text": "Record the issue, resolve it and repeat relevant checks before the acceptance decision"
+        },
+        {
+          "key": "D",
+          "text": "Replace the customer with a stub"
+        }
+      ],
+      "correctKey": "C",
+      "explanation": "The acceptance decision should use agreed criteria and the evidence after issue resolution.",
+      "topic": "Acceptance testing",
+      "source": "Study reference: PDF 4, pp. 99-106"
+    }
+  ]
+}
