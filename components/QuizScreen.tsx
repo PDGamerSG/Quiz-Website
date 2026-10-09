@@ -188,19 +188,19 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
         </div>
 
         <Card key={question.id} className="mt-8 p-5 anim-fade-up sm:p-8">
-          <nav aria-label="question controls" className="mb-5 flex items-center justify-between gap-3 border-b border-white/10 pb-5">
+          <nav aria-label="question controls" className="mb-5 grid gap-3 border-b border-white/10 pb-5 sm:flex sm:items-center sm:justify-between">
             <Button
               type="button"
               variant="glass"
               onClick={goPrev}
               disabled={index === 0}
-              className="flex-1 px-3 sm:flex-none sm:px-5"
+              className="w-full sm:w-auto"
               aria-label="previous question"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              back
+              previous question
             </Button>
-            <Button type="button" onClick={goNext} className="flex-1 px-3 sm:flex-none sm:px-5">
+            <Button type="button" onClick={goNext} className="w-full sm:w-auto">
               {isLast ? (
                 <><Flag className="h-4 w-4" aria-hidden="true" />finish quiz</>
               ) : (
@@ -300,19 +300,19 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
         </nav>
 
         <div className="mt-auto pt-8">
-          <div className="flex items-center gap-3">
+          <div className="grid gap-3 sm:flex sm:items-center">
             <Button
               type="button"
               variant="glass"
               onClick={goPrev}
               disabled={index === 0}
-              className="w-11 shrink-0 px-0 sm:w-auto sm:px-5"
+              className="w-full shrink-0 sm:w-auto"
               aria-label="previous question"
             >
-              <ArrowLeft className="h-4 w-4" />
-              <span className="hidden sm:inline">back</span>
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              previous question
             </Button>
-            <Button type="button" onClick={goNext} className="group flex-1">
+            <Button type="button" onClick={goNext} className="group w-full sm:flex-1">
               {isLast ? (
                 <>
                   <Flag className="h-4 w-4" />
