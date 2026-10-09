@@ -26,6 +26,12 @@ Deploy to a host that supports the Next.js Node.js runtime and route handlers. S
 
 The connection string stays on the server, and `.env.local` is ignored by Git. Never use a `NEXT_PUBLIC_` variable for database credentials. The production build works without database credentials; live save/load requests require them.
 
+### Fixing database errors on Vercel
+
+The local `.env.local` file is not uploaded by a GitHub deployment. In Vercel, open **Project → Settings → Environment Variables**, add `DATABASE_URL` with the complete Neon connection string for **Production** (and **Preview** if needed), and set `QUIZ_LIBRARY_VISIBILITY=shared`. Redeploy after saving: environment changes do not affect an already running deployment. Keep the actual connection string out of Git.
+
+The `/api/quizzes` response includes a safe error code when storage fails. `DATABASE_NOT_CONFIGURED` means the deployment lacks `DATABASE_URL`; `DATABASE_URL_INVALID` means the value is malformed; `DATABASE_AUTH_FAILED` means credentials or permissions need correcting; `DATABASE_SCHEMA_MISSING` means `npm run db:migrate` must run against that deployment's database. `DATABASE_UNREACHABLE` identifies a connection failure. Server logs contain only these fixed codes, never raw database exceptions or connection strings.
+
 ## Cloud storage
 
 - The shared library is visible to every visitor. Anyone can save, edit, export or delete a quiz. Sharing is the default; `QUIZ_LIBRARY_VISIBILITY=private` optionally scopes the library to each browser.

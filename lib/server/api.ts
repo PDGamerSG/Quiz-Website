@@ -2,6 +2,7 @@ import "server-only";
 import { createHash, randomBytes } from "node:crypto";
 import { cookies } from "next/headers";
 import { MAX_IMPORT_BYTES } from "../quiz";
+import { storageFailure } from "../database-errors";
 
 export class ApiError extends Error {
   constructor(public status: number, message: string) { super(message); }
@@ -64,5 +65,7 @@ export function apiError(error: unknown) {
   if (error instanceof ApiError) return jsonResponse({ error: error.message }, error.status);
   // Database errors can contain connection details; never serialize or log them.
   if (error && typeof error === "object" && "code" in error && error.code === "23505") return jsonResponse({ error: "A quiz with that name already exists. Choose another name or open the saved quiz." }, 409);
-  return jsonResponse({ error: "Database storage is temporarily unavailable. Your draft is safe; please try again." }, 503);
+  const failure = storageFailure(error);
+  console.error("Quiz storage request failed:", failure.code);
+  return jsonResponse({ error: failure.message, code: failure.code }, 503);
 }
