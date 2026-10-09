@@ -44,6 +44,8 @@ The `/api/quizzes` response includes a safe error code when storage fails. `DATA
 
 ## Using the website
 
+The homepage lists every saved quiz above the import form, with its name, question count and last update. Search by name, then choose **open quiz** to load its questions and practice settings. Refresh retrieves the latest shared library.
+
 1. Upload or drop a `.html`, `.htm` or `.json` file, or paste its contents. A complete paste automatically detects the format.
 2. Check the question count, preview, and any skipped-question warnings. Enter or edit the quiz name.
 3. Open **add or edit explanations** to choose a question and write your own reasoning, steps or examples. Save the explanation, then save the quiz to keep the changes in the library. The homepage includes complete JSON and HTML format examples with a copy button.

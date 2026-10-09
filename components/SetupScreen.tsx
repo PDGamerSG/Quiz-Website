@@ -139,10 +139,14 @@ export function SetupScreen({ onStart, onReview }: {
         <header className="flex flex-col items-center text-center anim-fade-up">
           <Badge icon={<Sparkles className="h-3 w-3 text-accent" />}>quizly · your questions, your pace</Badge>
           <h1 className="mt-6 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">bring your quiz.<br /><span className="text-accent">make it a little more yours.</span></h1>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">Upload HTML or JSON, choose how you practise, and get a full answer review. Explore quizzes saved by the community.</p>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">Choose from the available quizzes below, or upload your own HTML or JSON. Practise at your pace and review every answer.</p>
         </header>
+        <QuizLibrary quizzes={library.quizzes} loading={library.loading} error={library.error} busy={busy} shared={library.visibility === "shared"}
+          onRefresh={() => void library.refresh()} onLoad={(quiz) => void loadQuiz(quiz)} onExport={(quiz) => void loadQuiz(quiz, true)} onDelete={setDeleting} />
+        <div id="quiz-editor" className="scroll-mt-6">
         <Card className="mt-8 p-5 anim-fade-up d-2 sm:p-7">
           <fieldset disabled={busy} className="min-w-0" aria-busy={busy}>
+          <h2 className="mb-5 text-base font-medium">import or edit a quiz</h2>
           <label htmlFor="subject" className="text-sm font-medium">quiz name</label>
           <input id="subject" value={draft.subject} maxLength={180} placeholder="e.g. software testing" autoComplete="off"
             onChange={(event) => setDraft((previous) => ({ ...previous, subject: event.target.value }))}
@@ -174,9 +178,8 @@ export function SetupScreen({ onStart, onReview }: {
           <p className="mt-3 text-center text-xs text-muted-foreground">{library.visibility === "shared" ? "Saving or starting publishes these questions to the shared library." : "Saving or starting keeps these questions in your cloud library."}</p>
           </fieldset>
         </Card>
+        </div>
         <QuizFormatGuide />
-        <QuizLibrary quizzes={library.quizzes} loading={library.loading} error={library.error} busy={busy} shared={library.visibility === "shared"}
-          onRefresh={() => void library.refresh()} onLoad={(quiz) => void loadQuiz(quiz)} onExport={(quiz) => void loadQuiz(quiz, true)} onDelete={setDeleting} />
         {deviceQuizzes.length > 0 && <section aria-label="Quizzes saved on this device" className="mt-6 rounded-xl border border-white/10 p-4"><p className="text-sm">{deviceQuizzes.length} quizzes from this device</p><p className="mt-2 text-xs text-muted-foreground">Publish your previous saved quizzes to the cloud library. Copies with conflicting names stay here until you rename them.</p><Button type="button" variant="glass" disabled={busy} className="mt-3 text-xs" onClick={() => void publishDeviceQuizzes()}>publish device quizzes</Button><ul className="mt-3 space-y-2">{deviceQuizzes.map((quiz) => <li key={quiz.id}><button type="button" disabled={busy} className="text-left text-xs text-accent hover:underline" onClick={() => changeImport(serializeQuiz(quiz.title, quiz.questions), "json", quiz.title)}>open device copy · {quiz.title}</button></li>)}</ul></section>}
         <AttemptHistory onReview={onReview} disabled={busy} />
         <p className="mt-8 text-center text-xs leading-relaxed text-muted-foreground">Saved quizzes live in the cloud. Drafts and unfinished attempts recover on this device.<br />Completed results are saved in this browser&apos;s private cloud history.</p>
