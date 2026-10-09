@@ -26,6 +26,7 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
   const [answers, setAnswers] = useState<Answers>(initialProgress?.answers ?? Object.create(null));
   const [elapsedMs, setElapsedMs] = useState(initialProgress?.elapsedMs ?? 0);
   const [confirmingFinish, setConfirmingFinish] = useState(false);
+  const [pendingAdvance, setPendingAdvance] = useState<{ index: number; key: string } | null>(null);
   const [baseElapsed] = useState(initialProgress?.elapsedMs ?? 0);
   const startedAt = useRef(0);
   const progressRef = useRef<Progress>({ index, answers, elapsedMs });
@@ -63,27 +64,42 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
   }, [answers, baseElapsed, onFinish]);
 
   const requestFinish = useCallback(() => {
+    setPendingAdvance(null);
     if (answeredCount < questions.length) setConfirmingFinish(true);
     else finish();
   }, [answeredCount, questions.length, finish]);
 
   const select = useCallback(
     (key: string) => {
+      if (!shortcutsEnabled || confirmingFinish || (instantFeedback && chosen !== undefined) || chosen === key) return;
       setAnswers((prev) => {
         // Once instant feedback has revealed the answer, the pick is final.
         if (instantFeedback && prev[question.id] !== undefined) return prev;
         return { ...prev, [question.id]: key };
       });
+      setPendingAdvance({ index, key });
     },
-    [instantFeedback, question.id],
+    [instantFeedback, question.id, chosen, index, shortcutsEnabled, confirmingFinish],
   );
 
   const goNext = useCallback(() => {
+    setPendingAdvance(null);
     if (isLast) requestFinish();
     else setIndex((i) => i + 1);
   }, [requestFinish, isLast]);
 
-  const goPrev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), []);
+  const goPrev = useCallback(() => {
+    setPendingAdvance(null);
+    setIndex((i) => Math.max(0, i - 1));
+  }, []);
+
+  // Schedule only a new answer selection. Restoring or reviewing an answered
+  // question must never move the user away from it automatically.
+  useEffect(() => {
+    if (pendingAdvance?.index !== index || pendingAdvance.key !== chosen || !shortcutsEnabled || confirmingFinish) return;
+    const timer = setTimeout(goNext, 2000);
+    return () => clearTimeout(timer);
+  }, [pendingAdvance, index, chosen, shortcutsEnabled, confirmingFinish, goNext]);
 
   // Keyboard: a–z or 1–9 pick an option, arrows and enter move between questions.
   useEffect(() => {
@@ -148,7 +164,7 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
               type="button"
               variant="glass"
               className="h-9 w-9 px-0"
-              onClick={onQuit}
+              onClick={() => { setPendingAdvance(null); onQuit(); }}
               aria-label="leave quiz"
               title="leave quiz"
             >
@@ -236,6 +252,7 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
             <p className={chosen === question.correctKey ? "text-success" : "text-danger"}>{chosen === question.correctKey ? "Correct." : `Incorrect. The correct answer is ${question.correctKey}.`} Your first answer is recorded.</p>
             {question.explanation && <div className="mt-3"><p className="text-xs font-medium text-foreground">why this answer?</p><p className="mt-1 whitespace-pre-wrap text-muted-foreground">{question.explanation}</p></div>}
           </div>}
+          {pendingAdvance?.index === index && <p role="status" className="mt-3 text-xs text-muted-foreground">{isLast ? "Finishing this attempt in 2 seconds…" : "Next question in 2 seconds…"}</p>}
           {question.source && <p className="mt-4 text-xs text-muted-foreground">{question.source}</p>}
         </Card>
 
@@ -246,7 +263,7 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
               <button
                 key={item.id}
                 type="button"
-                onClick={() => setIndex(itemIndex)}
+                onClick={() => { setPendingAdvance(null); setIndex(itemIndex); }}
                 aria-label={`go to question ${itemIndex + 1}, ${done ? "answered" : "unanswered"}`}
                 aria-current={itemIndex === index ? "step" : undefined}
                 className={cn(

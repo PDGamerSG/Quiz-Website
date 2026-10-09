@@ -54,6 +54,8 @@ The `/api/quizzes` response includes a safe error code when storage fails. `DATA
 
 Instant feedback locks your first choice after revealing the answer. With feedback off, answers can be changed before submission. Unanswered questions count as skipped. Finishing with unanswered questions requires confirmation.
 
+Selecting an answer automatically moves to the next question after two seconds. On the last question, it finishes the attempt using the same unanswered-question confirmation. Changing an answer with instant feedback off restarts the two-second pause. Manual navigation and opening a finish/leave dialog cancel the pending move; reviewing an answered question or restoring a saved attempt does not start a timer.
+
 Drafts and settings save automatically. A running attempt and its elapsed time recover after a refresh; time spent away from the page is excluded. Results also survive a refresh. Leaving a quiz explicitly discards that attempt, keeping the imported questions.
 
 ## JSON format
