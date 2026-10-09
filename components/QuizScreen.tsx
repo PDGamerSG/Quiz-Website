@@ -188,6 +188,26 @@ export function QuizScreen({ subject, questions, instantFeedback, initialProgres
         </div>
 
         <Card key={question.id} className="mt-8 p-5 anim-fade-up sm:p-8">
+          <nav aria-label="question controls" className="mb-5 flex items-center justify-between gap-3 border-b border-white/10 pb-5">
+            <Button
+              type="button"
+              variant="glass"
+              onClick={goPrev}
+              disabled={index === 0}
+              className="flex-1 px-3 sm:flex-none sm:px-5"
+              aria-label="previous question"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              back
+            </Button>
+            <Button type="button" onClick={goNext} className="flex-1 px-3 sm:flex-none sm:px-5">
+              {isLast ? (
+                <><Flag className="h-4 w-4" aria-hidden="true" />finish quiz</>
+              ) : (
+                <>next question<ArrowRight className="h-4 w-4" aria-hidden="true" /></>
+              )}
+            </Button>
+          </nav>
           {question.topic && <p className="mb-3 text-xs text-accent">{question.topic}</p>}
           <h1 ref={questionRef} tabIndex={-1} className="whitespace-pre-wrap break-words text-lg font-medium leading-relaxed sm:text-xl sm:leading-relaxed">
             {question.prompt}
