@@ -44,13 +44,13 @@ The `/api/quizzes` response includes a safe error code when storage fails. `DATA
 
 ## Using the website
 
-The homepage lists every saved quiz above the import form, with its name, question count and last update. Search by name, then choose **open quiz** to load its questions and practice settings. Refresh retrieves the latest shared library.
+The homepage lists every saved quiz above the import form, with its name, question count and last update. Search by name, then choose **start quiz** to open its practice panel. Choose question shuffling, option shuffling, instant feedback and an optional topic, then start the attempt. Starting a saved quiz uses its loaded questions without saving or updating the library again. Choose **edit quiz** to change its questions or explanations, or **import another quiz** to create a new quiz. Refresh retrieves the latest shared library.
 
 1. Upload or drop a `.html`, `.htm` or `.json` file, or paste its contents. A complete paste automatically detects the format.
 2. Check the question count, preview, and any skipped-question warnings. Enter or edit the quiz name.
 3. Open **add or edit explanations** to choose a question and write your own reasoning, steps or examples. Save the explanation, then save the quiz to keep the changes in the library. The homepage includes complete JSON and HTML format examples with a copy button.
 4. Optionally select a topic, shuffle questions or options, or disable instant feedback for an exam-style attempt.
-5. Save the quiz to the shared library or start it. Starting also saves the full imported quiz. Opening a saved quiz lets you update it; importing another quiz with the same name never silently overwrites it.
+5. Save the quiz to the shared library to open its start panel, or start directly from the editor to save it and begin the attempt. The saved start panel and practice settings recover after a refresh; explicitly opening the editor keeps unsaved edits in the draft. Importing another quiz with the same name never silently overwrites it.
 6. Answer using the buttons, letters or number keys. Use the numbered navigator to revisit questions. Left/right arrows and Enter work when focus is on the question; focused buttons retain their normal keyboard behavior.
 7. Finish to see your score, correct/wrong/skipped answers, and explanations. Your result saves to private cloud history. Retake the quiz, practise only missed questions, download your results, or open a previous result from the homepage.
 

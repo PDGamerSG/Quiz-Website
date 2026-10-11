@@ -4,7 +4,7 @@ import { DEFAULT_SETTINGS, type QuizSettings, type Stage } from "./session";
 export const DRAFT_KEY = "quizly:draft";
 export const LIBRARY_KEY = "quizly:library:v1";
 export const SESSION_KEY = "quizly:session:v1";
-export type Draft = { subject: string; raw: string; format: ImportFormat; settings: QuizSettings; cloudId?: string; cloudRevision?: number };
+export type Draft = { subject: string; raw: string; format: ImportFormat; settings: QuizSettings; view: "edit" | "start"; cloudId?: string; cloudRevision?: number };
 export type SavedQuiz = { id: string; title: string; questions: Question[]; updatedAt: string };
 
 export function readStored(key: string): unknown {
@@ -40,6 +40,7 @@ export function readDraft(): Draft {
     raw: typeof data?.raw === "string" ? data.raw : typeof data?.json === "string" ? data.json : "",
     format: data?.format === "html" ? "html" : "json",
     settings: readSettings(data?.settings),
+    view: data?.view === "start" && typeof data?.cloudId === "string" ? "start" : "edit",
     cloudId: typeof data?.cloudId === "string" ? data.cloudId : undefined,
     cloudRevision: typeof data?.cloudRevision === "number" && Number.isInteger(data.cloudRevision) && data.cloudRevision > 0 ? data.cloudRevision : undefined,
   };

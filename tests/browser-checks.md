@@ -21,6 +21,10 @@ Verified in the T3 Code collaborative Chromium browser against the local Next.js
 | Retake | Answers and timer reset |
 | Filter by topic | Mutation testing run contains its 12 questions only |
 | Save/load/delete library entries | Stored copies load correctly; deletion requires confirmation |
+| Saved quiz start panel | Library start action opens shuffle questions, shuffle options, feedback and topic settings; import and explanation editors stay hidden |
+| Saved start settings after reload | Start panel and both shuffle settings recover; feedback remains off |
+| Start a saved quiz with both shuffles | Fresh 140-question attempt uses shuffled question and option orders, preserves every correct answer key and honours exam mode |
+| Saved start panel responsiveness | No horizontal overflow at 320, 768, 1024 and 1440 CSS pixels |
 | Export imported HTML as JSON | Generated JSON has all 140 questions and correct answer keys |
 | Add a custom explanation | Edited explanation included in the draft, saved library and live answer feedback |
 | Homepage question format | Valid JSON and HTML examples visible on the setup page, including detailed explanations |
